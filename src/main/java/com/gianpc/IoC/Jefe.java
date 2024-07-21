@@ -1,9 +1,9 @@
 package com.gianpc.IoC;
 
-public class Jefe{
+public class Jefe implements Empleados {
 
     public String getTareas() {
         
-        return "Jefe: Gestionar la plantilla de la empresa";
+        return "Jefe: Gestionar la planilla de la empresa";
     }
 }
