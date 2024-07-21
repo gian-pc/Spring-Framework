@@ -1,20 +1,24 @@
 package com.gianpc.IoC;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class UsoEmpleados {
 
     public static void main(String[] args) {
         
-        // Creación de objetos de tipo Empleado
+        // Para usa el contenedor de Spring hay que seguir los siguientes pasos:
 
-        Empleados Empleado1 = new Director();
-        Empleados Empleado2 = new Jefe();
-        Empleados Empleado3 = new Secretario();
-
-        // Uso de los objetos creados
-        System.out.println(Empleado1.getTareas()); // Director: Gestionar la dirección de la empresa
-        System.out.println(Empleado2.getTareas()); // Jefe: Gestionar la planilla de la empresa
-        System.out.println(Empleado3.getTareas()); // Secretario: Gestionar la agenda de los jefes
+        // 1. Cargar el archivo de configuración(applicationContext.xml) de Spring
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        
+        // 2. Pedir al contenedor de Spring un bean
+        Empleados Juan = context.getBean("miEmpleado", Empleados.class);
+        
+        // 3. Usar el bean
+        System.out.println(Juan.getTareas()); // Secretario: Gestionar la agenda de los jefes
+    
+        // 4. Cerrar el contenedor de Spring
+        context.close();
 
     
     }
